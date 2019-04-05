@@ -24,6 +24,7 @@ char **reconstruct_trip(Ticket **tickets, int length)
     // change dest to equal the value of the last dest we visted
     dest = hash_table_retrieve(ht, route[i]);
   }
+  destroy_hash_table(ht);
 
   return route;
 }

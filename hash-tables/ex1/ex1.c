@@ -8,16 +8,21 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
   HashTable *ht = create_hash_table(16);
   Answer *answer = malloc(sizeof(Answer));
 
+  // loop through total items
   for (int i = 0; i < length; i++)
   {
+    // check to see if we have this key, if we have a key that is equal to our weights[i] we know that we found a pair the is equal to the limit
     if(hash_table_retrieve(ht, weights[i]) != -1)
     {
+      //set our current iteration to our first index
       answer->index_1 = i;
+      // set the value at weights[i] to the 2nd index
       answer->index_2 = hash_table_retrieve(ht, weights[i]);
       return answer;
     }
     else
     {
+      // set the key to what we need to complete the limit, value to index
       hash_table_insert(ht, (limit - weights[i]), i);
     }
   }
